@@ -1425,6 +1425,9 @@ rm -rf /root/*.sh
 rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
+rm -rf /etc/noobz
+mkdir -p /etc/noobz
+echo "" > /etc/xray/noob
 clear
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${BIWhite}Script Successfully Installed${NC}"
