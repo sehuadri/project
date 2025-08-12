@@ -895,12 +895,19 @@ cat >/etc/cron.d/xp_all <<-END
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		2 0 * * * root /usr/local/sbin/xp
 	END
-cat >/etc/cron.d/logclean <<'END'
+cat >/etc/cron.d/logclean <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		*/20 * * * * root /usr/local/sbin/clearlog
+		END
+  cat >/etc/cron.d/clearlog <<-END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-*/10 * * * * root for logfile in /var/log/syslog /var/log/nginx/access.log /var/log/nginx/error.log /var/log/xray/access.log /var/log/xray/error.log; do [ -f "$logfile" ] && truncate -s 0 "$logfile"; done
-
+*/10 * * * * root truncate -s 0 /var/log/syslog \
+    && truncate -s 0 /var/log/nginx/error.log \
+    && truncate -s 0 /var/log/nginx/access.log \
+    && truncate -s 0 /var/log/xray/error.log \
+    && truncate -s 0 /var/log/xray/access.log
 END
     chmod 644 /root/.profile
     cat >/etc/cron.d/daily_reboot <<-END
