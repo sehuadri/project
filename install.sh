@@ -900,7 +900,7 @@ cat >/etc/cron.d/logclean <<-END
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		*/20 * * * * root /usr/local/sbin/clearlog
 		END
-  cat >/etc/cron.d/clearlog <<-END
+  cat >/etc/cron.d/pembersih <<-END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 */10 * * * * root truncate -s 0 /var/log/syslog \
