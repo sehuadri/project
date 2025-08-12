@@ -896,14 +896,10 @@ cat >/etc/cron.d/xp_all <<-END
 		2 0 * * * root /usr/local/sbin/xp
 	END
 cat >/etc/cron.d/logclean <<-END
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-*/10 * * * * root truncate -s 0 /var/log/syslog \
-    && truncate -s 0 /var/log/nginx/error.log \
-    && truncate -s 0 /var/log/nginx/access.log \
-    && truncate -s 0 /var/log/xray/error.log \
-    && truncate -s 0 /var/log/xray/access.log
-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		*/20 * * * * root /usr/local/sbin/clearlog
+		END
     chmod 644 /root/.profile
     cat >/etc/cron.d/daily_reboot <<-END
 		SHELL=/bin/sh
