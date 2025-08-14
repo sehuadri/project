@@ -1223,6 +1223,7 @@ frontend multiports
     default_backend recir_https_www
 frontend ssl
     mode tcp
+    bind *:444 tfo
     bind *:777 tfo
     bind abns@haproxy-https accept-proxy ssl crt /etc/haproxy/hap.pem alpn h2,http/1.1 tfo
     tcp-request inspect-delay 500ms
