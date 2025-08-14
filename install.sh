@@ -1210,9 +1210,9 @@ defaults
     timeout client  300s
     timeout server  300s
 frontend multiport
-    mode tcp
+   mode tcp
     bind-process 1 2
-    bind *:400-900 tfo
+    bind *:222-1000 tfo
     tcp-request inspect-delay 500ms
     tcp-request content accept if HTTP
     tcp-request content accept if { req.ssl_hello_type 1 }
