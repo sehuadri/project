@@ -1210,8 +1210,7 @@ defaults
     timeout client  300s
     timeout server  300s
 frontend multiport
-   mode tcp
-    bind-process 1 2
+    mode tcp
     bind *:222-1000 tfo
     tcp-request inspect-delay 500ms
     tcp-request content accept if HTTP
@@ -1224,13 +1223,7 @@ frontend multiports
     default_backend recir_https_www
 frontend ssl
     mode tcp
-    bind-process 1
-    bind *:80 tfo
-    bind *:55 tfo
-    bind *:8080 tfo
-    bind *:2086 tfo
-    bind *:8880 tfo
-    bind *:8081-9999 tfo
+    bind *:443 tfo
     bind abns@haproxy-https accept-proxy ssl crt /etc/haproxy/hap.pem alpn h2,http/1.1 tfo
     tcp-request inspect-delay 500ms
     tcp-request content capture req.ssl_sni len 100
