@@ -351,7 +351,7 @@ memasang_notifikasi_bot() {
   local CITY=$(curl -s ipinfo.io/city)
   local ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10)
   local CHATID="1486508882"
-  local KEY="7286072978:AAF6JRoH86zg5UAQeHKrpIviAICDc-vJxD"
+  local KEY="7286072978:AAF6JRoH86zg5UAQeHKrpIviAICDc-vJxDU"
   local URL="https://api.telegram.org/bot$KEY/sendMessage"
   local TIME="10"
 
